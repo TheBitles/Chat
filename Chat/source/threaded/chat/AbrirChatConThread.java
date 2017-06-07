@@ -1,9 +1,9 @@
 package threaded.chat;
 
+import java.util.HashMap;
 
 public class AbrirChatConThread extends Thread {
-	Thread t;
-	
+	HashMap<String, String> participantes;
 
 	/* (non-Javadoc)
 	 * @see java.lang.Thread#run()
@@ -13,14 +13,14 @@ public class AbrirChatConThread extends Thread {
 		//MainWindow m = new MainWindow();
 		//m.setVisible(true);
 		
-		Conversation v = new Conversation();
+		Conversation v = new Conversation(participantes);
 		v.setVisible(true);
 		
 	}
 
 
-	public AbrirChatConThread() {
-		// TODO Auto-generated constructor stub
+	public AbrirChatConThread(HashMap<String, String> participantesNuevoChat) {
+		participantes = participantesNuevoChat;
 	}
 
 
