@@ -1,11 +1,29 @@
 package threaded.chat;
 
+import java.net.InetAddress;
+import java.net.Socket;
 
 public class Participante {
 
 	private String name;
-	private String IP;
+	private String stringIP;
+	private InetAddress IP;
+	private Socket socket;
 	
+	/**
+	 * @param socket the socket to set
+	 */
+	public void setSocket(Socket socket) {
+		this.socket = socket;
+	}
+
+	/**
+	 * @return the socket
+	 */
+	public Socket getSocket() {
+		return socket;
+	}
+
 	public String getName(){
 		return name;
 	}
@@ -25,11 +43,16 @@ public class Participante {
 
 
 	public void setIP(String ip) {
-		IP = ip;
+		stringIP = ip;
 	}
 
 	public String getIP() {
-		return IP;
+		return stringIP;
+	}
+
+	public void setIP(InetAddress inetAddress) {
+		IP = inetAddress;
+		
 	}
 
 }

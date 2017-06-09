@@ -8,7 +8,13 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-
+/*
+ * 
+ * 
+ * https://stackoverflow.com/questions/4981214/change-value-of-a-variable-x-in-main-method-through-running-thread
+ * 
+ * 
+ */
 public class Server extends Thread {
 	ArrayList<Socket> clientes = new ArrayList<Socket>(5);
 	public static void main(String [] args) throws IOException {
@@ -19,19 +25,39 @@ public class Server extends Thread {
 	public void run() {
 		//Socket nuevoCliente= server.accept();
 	}
+	
 	public Server() throws IOException {
-		
+		ArrayList<Socket> clientes = new ArrayList<Socket>(5);
 		int puertoEscuchaServer = 1234;
+		
 		System.out.println("SERVER: server on, listening on " + puertoEscuchaServer);
 		ServerSocket server = new ServerSocket(puertoEscuchaServer);
-		Socket nuevoCliente;
 		System.out.println("SERVER: awaiting connection on " + server.getLocalPort());
+		
+		Thread aceptarNuevoCliente = new Thread(){			
+			@Override
+			public void run(){
+				try {
+					while (true){
+						System.out.println("esperando");
+						clientes.add( server.accept() );
+						System.out.println("aceptado!");
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		
+		aceptarNuevoCliente.start();
+
+		/*
 		while (true) {
 			nuevoCliente = server.accept();
 			clientes.add( nuevoCliente );
 			System.out.println("se conectó " + nuevoCliente.getLocalSocketAddress() + " a través de " + nuevoCliente.getPort());			
 			}
-		
+		*/
 		//server.close();
 		
 		/*
