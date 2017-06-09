@@ -67,7 +67,7 @@ public class Servidor extends JFrame {
 		contentPane.add(serverInfo);
 		serverInfo.setColumns(10);
 		
-		ArrayList<Socket> clientes = new ArrayList<Socket>(5);
+		///ArrayList<Socket> clientes = new ArrayList<Socket>(5);
 		int puertoEscuchaServer = 1234;
 		
 		System.out.println("SERVER: server on, listening on " + puertoEscuchaServer);
@@ -79,8 +79,20 @@ public class Servidor extends JFrame {
 			public void run(){
 				while (true){
 					for(int i = 0; i < lista.getSize(); i++){
+						System.out.println(lista.get(i).showYourself());
+						
+						try {
+							sleep(777);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
 						if (!lista.get(i).getSocket().isConnected()){
+							System.out.println("i should remove client " + i);
 							lista.remove(i);
+						}
+						else {
+							
 						}
 					}
 				}
@@ -95,10 +107,11 @@ public class Servidor extends JFrame {
 						System.out.println("esperando");
 						Socket nuevoCliente = server.accept();
 						
-						clientes.add( nuevoCliente );
+						//clientes.add( nuevoCliente );
 						Participante nuevo = new Participante("nombre");
 						nuevo.setSocket(nuevoCliente);
 						nuevo.setIP(nuevoCliente.getInetAddress());
+						
 						lista.addElement(nuevo);
 						
 						System.out.println("aceptado!");

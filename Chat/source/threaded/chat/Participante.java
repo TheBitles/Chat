@@ -6,7 +6,6 @@ import java.net.Socket;
 public class Participante {
 
 	private String name;
-	private String stringIP;
 	private InetAddress IP;
 	private Socket socket;
 	
@@ -28,31 +27,25 @@ public class Participante {
 		return name;
 	}
 
-	public String toString() {
-		return name;
+	public String showYourself() {
+		return "Participante [name=" + name + ", IP=" + IP + ", socket=" + socket + ", is closed:" + socket.isClosed() + 
+				", isconnected: " + socket.isConnected() +  "]";
 	}
-
-
 
 	public Participante(String n) {
 		name = n;
 	}
 	
-
-
-
-
-	public void setIP(String ip) {
-		stringIP = ip;
-	}
-
-	public String getIP() {
-		return stringIP;
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return name;
 	}
 
 	public void setIP(InetAddress inetAddress) {
 		IP = inetAddress;
-		
 	}
 
 }
