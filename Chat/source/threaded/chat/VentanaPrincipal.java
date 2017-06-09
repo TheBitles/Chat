@@ -85,7 +85,11 @@ class MyFrame {
 		btnAgregarParticipante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				participantes.put("John", "192.168.100.105");
+				participantes.put("Paul", "192.168.100.106");
+				participantes.put("Ringo", "192.168.100.107");
 				listModel.addElement("John @ 192.168.100.105");
+				listModel.addElement("Paul @ 192.168.100.106");
+				listModel.addElement("Ringo @ 192.168.100.107");				
 			}
 		});
 		btnAgregarParticipante.setBounds(23, 294, 131, 23);
